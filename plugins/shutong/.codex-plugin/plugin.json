@@ -1,0 +1,19 @@
+{
+  "name": "shutong",
+  "version": "0.1.0",
+  "description": "本地记录解释次数，减少重复解释，默认一次后省略基础细节。",
+  "author": {
+    "name": "Local developer"
+  },
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "ShuTong 书童",
+    "shortDescription": "记住讲过的知识点，减少重复解释。",
+    "longDescription": "默认解释一次后省略基础细节；按需追问，并可打开本地知识点面板查看记录和调整设置。",
+    "developerName": "Local developer",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": "打开 ShuTong 知识点面板，检查当前记录。"
+  }
+}

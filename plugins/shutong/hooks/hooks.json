@@ -1,0 +1,8 @@
+{
+  "description": "ShuTong reads relevant knowledge before answers and counts only explanation excerpts found in the final answer. Local files only; does not block or continue turns.",
+  "hooks": {
+    "UserPromptSubmit": [{ "hooks": [{ "type": "command", "command": "node \"${PLUGIN_ROOT}/runtime/main.mjs\" hook", "timeout": 10 }] }],
+    "Stop": [{ "hooks": [{ "type": "command", "command": "node \"${PLUGIN_ROOT}/runtime/main.mjs\" hook", "timeout": 10 }] }],
+    "Interrupt": [{ "hooks": [{ "type": "command", "command": "node \"${PLUGIN_ROOT}/runtime/main.mjs\" hook", "timeout": 3 }] }]
+  }
+}

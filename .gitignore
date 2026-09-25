@@ -1,0 +1,27 @@
+# 本机文件
+.DS_Store
+Thumbs.db
+
+# 本地配置与凭据
+.env
+.env.*
+!.env.example
+
+# 本地用户数据，不随产品发布
+/local-data/
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+
+# 工程生成物
+node_modules/
+dist/
+*.tsbuildinfo
+.pnpm-store/
+coverage/
+*.log
+
+# 插件构建产物；build:plugin 会按当前机器重新生成
+/plugins/shutong/runtime/
+/plugins/shutong/.mcp.json
