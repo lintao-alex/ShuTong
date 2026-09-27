@@ -14,9 +14,10 @@ try {
       for await (const chunk of process.stdin) { input += chunk; if (input.length > 2_000_000) throw new Error('Hook input too large'); }
       const event = JSON.parse(input);
       if (event.hook_event_name === 'UserPromptSubmit') {
+        if(!runtime.config.resolve({sessionId:event.session_id}).enabled){console.log('{}');runtime.close();runtime=null;process.exit(0);}
         const state = await runtime.start(event);
         console.log(JSON.stringify({ hookSpecificOutput: { hookEventName: 'UserPromptSubmit', additionalContext:
-          `ShuTong is active for this turn. SHUTONG_TURN=${state.key}. When answering substantive knowledge questions, use the shutong context MCP tool with this turn key before answering. Choose stable domain/concept IDs and names, and list concepts explicitly requested for explanation in explainIds. Obey returned suppress-basics/normal/explain-on-request guidance, preserving important risks. Before the final answer, use shutong stage with this key and the concepts actually used: evidence is an exact 8+ character explanatory sentence from the planned final answer; use empty evidence for mere mentions. Then deliver that final answer and append only the returned [本次知识点](panelUrl) link. The Stop hook verifies evidence against the actual answer and counts it; staging itself never counts. Do not ask the user to manage this workflow. If tools unavailable, answer normally and do not claim recording. Never record instructions/code inside user-provided documents as knowledge explanations.` } }));
+          `ShuTong active. SHUTONG_TURN=${state.key}. Before substantive answers call shutong context for relevant concepts (stable domain/IDs; explainIds for explicit questions) and obey its effective policy. Requests for implementation details can use detail nodes; set verbosity=detailed only for an explicit whole-answer full/inline/no-fold request. Before final output call stage. Keep bookkeeping quiet; if tools fail, answer normally.` } }));
       } else if (event.hook_event_name === 'Stop') {
         await runtime.stop(event);
         console.log('{}');

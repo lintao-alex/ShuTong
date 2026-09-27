@@ -1,0 +1,20 @@
+{
+  "name": "shutong-preview",
+  "interface": {
+    "displayName": "Shutong Preview"
+  },
+  "plugins": [
+    {
+      "name": "shutong",
+      "source": {
+        "source": "local",
+        "path": "./plugins/shutong"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

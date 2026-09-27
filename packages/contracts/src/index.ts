@@ -57,6 +57,7 @@ export interface KnowledgeSnapshot extends KnowledgeInformation {
   readonly format: 'shutong-knowledge';
   readonly version: 1;
   readonly receipts: readonly ExplanationReceipt[];
+  readonly aliases?: readonly { domain:string; alias:string; conceptId:string }[];
 }
 
 /** The first production information type; no familiarity/confidence inference. */

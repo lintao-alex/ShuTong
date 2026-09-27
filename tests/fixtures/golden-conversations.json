@@ -1,0 +1,18 @@
+[
+  {"id":"G01","prompt":"解释哈希表是什么。","count":0,"explain":true,"mode":"explain-on-request","presentation":"trunk-and-details"},
+  {"id":"G02","prompt":"给当前查询任务推荐数据结构。","count":0,"mode":"normal","presentation":"trunk-and-details"},
+  {"id":"G03","prompt":"用哈希表实现这个索引，需要注意什么？","count":1,"mode":"suppress-basics","presentation":"trunk-and-details"},
+  {"id":"G04","prompt":"请从头详细说明哈希表。","count":2,"overrides":{"verbosity":"detailed"},"mode":"explain-on-request","presentation":"full"},
+  {"id":"G05","prompt":"只说结论，保留会影响选择的条件。","count":1,"overrides":{"verbosity":"conclusion-only"},"mode":"suppress-basics","presentation":"conclusion-first"},
+  {"id":"G06","prompt":"比较三种索引方案，不要用图。","count":1,"overrides":{"excludedModalities":["diagram"]},"mode":"suppress-basics","presentation":"trunk-and-details"},
+  {"id":"G07","prompt":"只讨论接口结构，不要修改代码。","count":0,"overrides":{"discussionOnly":true},"mode":"normal","presentation":"trunk-and-details"},
+  {"id":"G08","prompt":"用哈希表时需要注意什么？","count":0,"known":true,"mode":"suppress-basics","presentation":"trunk-and-details"},
+  {"id":"G09","prompt":"解释一次后继续分析方案。","count":1,"threshold":3,"mode":"normal","presentation":"trunk-and-details"},
+  {"id":"G10","prompt":"按自定义次数使用记录。","count":3,"threshold":3,"mode":"suppress-basics","presentation":"trunk-and-details"},
+  {"id":"G11","prompt":"记录已知但本次不要据此压缩。","count":1,"config":{"adaptiveResponse":false},"mode":"normal","presentation":"trunk-and-details"},
+  {"id":"G12","prompt":"保持回答适配，暂停自动记录。","count":1,"config":{"autoRecord":false},"mode":"suppress-basics","presentation":"trunk-and-details"},
+  {"id":"G13","prompt":"关闭画像，仍然先主干后细节。","count":1,"config":{"profileEnabled":false},"mode":"normal","presentation":"trunk-and-details"},
+  {"id":"G14","prompt":"本次关闭渐进详情。","count":1,"overrides":{"progressiveDetails":false},"mode":"suppress-basics","presentation":"normal"},
+  {"id":"G15","prompt":"不省略已知概念，但保留详情结构。","count":1,"config":{"suppressKnownConcepts":false},"mode":"normal","presentation":"trunk-and-details"},
+  {"id":"G16","prompt":"使用文字表达，不自动创建产物。","count":1,"config":{"preferArtifacts":false},"mode":"suppress-basics","presentation":"trunk-and-details"}
+]

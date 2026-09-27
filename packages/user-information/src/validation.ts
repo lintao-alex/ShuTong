@@ -76,5 +76,10 @@ export function snapshot(value: unknown): KnowledgeSnapshot {
     if (receiptKeys.has(key)) throw new TypeError('Duplicate receipt in snapshot');
     receiptKeys.add(key);
   }
-  return { format: 'shutong-knowledge', version: 1, threshold: integer(input.threshold, 'threshold', 1), concepts, receipts };
+  const aliases=input.aliases===undefined?[]:array(input.aliases,'aliases').map(value=>{
+    const row=object(value,'alias');const domain=text(row.domain,'domain'),alias=text(row.alias,'alias').normalize('NFKC').toLowerCase().trim(),conceptId=text(row.conceptId,'conceptId');
+    if(!ids.has(conceptId))throw new TypeError('Alias references a missing concept');return {domain,alias,conceptId};
+  });
+  if(new Set(aliases.map(a=>JSON.stringify([a.domain,a.alias]))).size!==aliases.length)throw new TypeError('Duplicate alias');
+  return { format: 'shutong-knowledge', version: 1, threshold: integer(input.threshold, 'threshold', 1), concepts, receipts,...(aliases.length?{aliases}:{}) };
 }

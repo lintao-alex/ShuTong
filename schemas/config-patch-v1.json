@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "profileEnabled": {
+      "type": "boolean"
+    },
+    "autoRecord": {
+      "type": "boolean"
+    },
+    "adaptiveResponse": {
+      "type": "boolean"
+    },
+    "suppressKnownConcepts": {
+      "type": "boolean"
+    },
+    "progressiveDetails": {
+      "type": "boolean"
+    },
+    "preferArtifacts": {
+      "type": "boolean"
+    },
+    "panelEnabled": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false,
+  "$id": "urn:shutong:config-patch-v1"
+}

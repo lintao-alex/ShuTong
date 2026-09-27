@@ -192,11 +192,11 @@ test('unsupported schema versions and unrelated databases are left unchanged', a
   const { store, filename } = await fixture(t);
   store.close();
   const db = new DatabaseSync(filename);
-  db.exec('PRAGMA user_version = 2');
+  db.exec('PRAGMA user_version = 3');
   db.close();
   assert.throws(() => new SqliteKnowledgeStore(filename), /Unsupported/);
   const future = new DatabaseSync(filename);
-  assert.equal(future.prepare('PRAGMA user_version').get().user_version, 2);
+  assert.equal(future.prepare('PRAGMA user_version').get().user_version, 3);
   future.close();
   const other = `${filename}.other`;
   const foreign = new DatabaseSync(other);

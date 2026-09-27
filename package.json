@@ -1,6 +1,6 @@
 {
   "name": "shutong",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -10,13 +10,15 @@
   "scripts": {
     "build": "tsc -b",
     "build:plugin": "pnpm build && node scripts/build-plugin.mjs",
+    "schemas": "node scripts/export-schemas.mjs",
     "typecheck": "tsc -b --pretty false && tsc -p tsconfig.type-tests.json",
     "test": "pnpm build:plugin && node --test tests/*.test.mjs",
     "check": "pnpm typecheck && pnpm test",
     "demo": "pnpm build && node examples/composition.mjs",
     "demo:profile": "pnpm build && node examples/local-profile.mjs",
     "profile": "node scripts/profile.mjs",
-    "probe:codex": "node scripts/probe-codex.mjs"
+    "probe:codex": "node scripts/probe-codex.mjs",
+    "report:cost": "node scripts/report-cost.mjs"
   },
   "devDependencies": {
     "@types/node": "22.20.4",
@@ -24,7 +26,10 @@
     "typescript": "5.9.3"
   },
   "dependencies": {
+    "@mermaid-js/tiny": "12.0.0",
     "@modelcontextprotocol/sdk": "^1.30.1",
+    "markdown-it": "15.0.2",
     "zod": "^4.6.5"
-  }
+  },
+  "license": "MIT"
 }

@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "format": {
+      "type": "string",
+      "const": "shutong-knowledge"
+    },
+    "version": {
+      "type": "number",
+      "const": 1
+    },
+    "threshold": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "concepts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "conceptId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "explanationCount": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "manuallyKnown": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "conceptId",
+          "name",
+          "explanationCount",
+          "manuallyKnown"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "receipts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "hostId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "sessionId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "requestId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "responseId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "conceptId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          }
+        },
+        "required": [
+          "hostId",
+          "sessionId",
+          "requestId",
+          "responseId",
+          "conceptId"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "alias": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "conceptId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          }
+        },
+        "required": [
+          "domain",
+          "alias",
+          "conceptId"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "format",
+    "version",
+    "threshold",
+    "concepts",
+    "receipts"
+  ],
+  "additionalProperties": false,
+  "$id": "urn:shutong:knowledge-v1"
+}
