@@ -11,6 +11,8 @@ ShuTong 的首要目标是让 AI 回答读起来不吃力：先看主干，需�
 需要 Node.js **22.22.2+**、pnpm **10.33.2** 和支持插件及钩子的 Codex。最近本机验证版本为 CLI `0.158.0-alpha.2.1`，不代表最低兼容版本。下载或克隆仓库后，**在仓库根目录**执行：
 
 ```sh
+git clone https://github.com/lintao-alex/ShuTong.git
+cd ShuTong
 pnpm install --frozen-lockfile --ignore-scripts
 pnpm check
 node scripts/configure-local-plugin.mjs ./plugins/shutong
@@ -72,7 +74,7 @@ pnpm build:plugin
 
 模块职责和可选宿主探测见 [开发说明](docs/development.md)，查看与修改本地记录见 [本地用户信息使用说明](docs/local-profile.md)。
 
-本目录是独立的产品 Git 仓库；GitHub 发布目标尚待维护者提供。源码包不含个人数据、node_modules、生成运行时或本机路径配置。阅读体验交由用户反馈，不承诺节省 Token。
+本目录是独立的产品 Git 仓库；公开仓库为 [lintao-alex/ShuTong](https://github.com/lintao-alex/ShuTong)。源码包不含个人数据、node_modules、生成运行时或本机路径配置。阅读体验交由用户反馈，不承诺节省 Token。
 
 
 ## 数据与隐私

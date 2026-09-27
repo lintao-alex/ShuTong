@@ -17,7 +17,7 @@ The 0.1.0 source preview has automated and local integration coverage, but no in
 
 Do not post tokens, private records, credentials, or an exploit against someone else's installation in a public issue.
 
-Once a GitHub repository exists, use **Security → Report a vulnerability** if private reporting is enabled. Until a private channel is published, ask the maintainer for one with a short, non-sensitive description. No private email address is currently advertised, and GitHub private reporting is not assumed to be enabled.
+On [the project repository](https://github.com/lintao-alex/ShuTong/security), use **Security → Report a vulnerability** if private reporting is enabled. Until a private channel is published, ask the maintainer for one with a short, non-sensitive description. No private email address is currently advertised, and GitHub private reporting is not assumed to be enabled.
 
 Include affected versions, a minimal synthetic reproduction, expected and observed behavior, and impact. Keep personal data out of reports.
 

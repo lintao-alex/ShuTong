@@ -23,9 +23,11 @@ Counts mean “shown before,” not mastery, confidence, or permanent understand
 
 You need **Node.js 22.22.2+**, **pnpm 10.33.2**, and Codex with plugin and hook support. The most recent local CLI verification used `0.158.0-alpha.2.1`; this is a tested version, not a claimed minimum.
 
-Download or clone this repository, keep it in a stable location, and run **from the repository root**:
+Download or clone [this repository](https://github.com/lintao-alex/ShuTong), keep it in a stable location, and run **from the repository root**:
 
 ```sh
+git clone https://github.com/lintao-alex/ShuTong.git
+cd ShuTong
 pnpm install --frozen-lockfile --ignore-scripts
 pnpm check
 node scripts/configure-local-plugin.mjs ./plugins/shutong
@@ -115,4 +117,4 @@ See [CONTRIBUTING](CONTRIBUTING.md) for the development workflow and useful bug 
 - [Developer internals](docs/development.md), [token measurement](docs/token-measurement.md), [0.1.0 release notes](docs/release-0.1.0.md) — 简体中文
 - [Changelog](CHANGELOG.md) · [Security](SECURITY.md) · [MIT license](LICENSE)
 
-Issue and pull-request links will use this repository's GitHub pages once a remote is published. No hosted service or support SLA is provided. Dependencies retain their own licenses.
+Use [Issues](https://github.com/lintao-alex/ShuTong/issues) for feedback and [Pull Requests](https://github.com/lintao-alex/ShuTong/pulls) for contributions. No hosted service or support SLA is provided. Dependencies retain their own licenses.

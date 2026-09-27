@@ -22,7 +22,7 @@
 
 `schemas/` 保存知识快照、配置补丁、本轮覆盖和回答详情的 JSON Schema；通过 `pnpm schemas` 从运行时契约重新生成。数据库结构版本 2 会迁移原版本 1，知识导出仍为 `shutong-knowledge` 版本 1，新增可选别名字段。升级迁移已有次数和阈值已有回归测试。
 
-许可证已确定为 MIT。仓库包含 shutong-preview 安装目录，下载后先本地构建再安装，详见 [0.1.0 发布说明](release-0.1.0.md)。远程地址和 GitHub 发布仍待维护者提供。第二宿主标为待实现，先完成 Codex 体验验证。
+许可证已确定为 MIT。仓库包含 shutong-preview 安装目录，下载后先本地构建再安装，详见 [0.1.0 发布说明](release-0.1.0.md)。公开源码仓库为 [lintao-alex/ShuTong](https://github.com/lintao-alex/ShuTong)；请先在本机构建，不把源码仓库直接当作已构建插件缓存。第二宿主标为待实现，先完成 Codex 体验验证。
 
 
 升级与卸载见 [中文 README](../README.zh-CN.md) 或 [English user guide](user-guide.md)。独立 Skill 只提供呈现规则，不等于另一宿主已完成自动记录适配。

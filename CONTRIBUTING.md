@@ -26,7 +26,7 @@ Edit source modules, not generated runtime or installed cache files. `pnpm check
 - Do not commit exports, panel URLs with tokens, chat logs, generated local paths, or credentials.
 - Model benchmarks consume usage: scope them explicitly and report failures and overhead. Unit tests do not prove savings or semantic completeness.
 
-Once published, use this repository's GitHub Issues and Pull Requests. No remote URL is assumed in the preview. Sensitive vulnerabilities follow [SECURITY.md](SECURITY.md).
+Use [GitHub Issues](https://github.com/lintao-alex/ShuTong/issues) for reproducible feedback and [Pull Requests](https://github.com/lintao-alex/ShuTong/pulls) for contributions. Sensitive vulnerabilities follow [SECURITY.md](SECURITY.md).
 
 Contributions are submitted under [MIT](LICENSE). Preserve dependency notices and the provenance of copied examples.
 

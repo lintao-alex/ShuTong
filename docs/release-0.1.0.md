@@ -30,7 +30,7 @@ codex plugin add shutong@shutong-preview
 
 ## 发布状态
 
-采用 [MIT](../LICENSE)。源码发布材料和本地提交已准备；GitHub 远程仓库、推送与 Release 页面需要维护者提供目标仓库并完成本机登录。此文件不能被解释为已经在 GitHub 上发布。
+采用 [MIT](../LICENSE)。公开源码仓库为 [lintao-alex/ShuTong](https://github.com/lintao-alex/ShuTong)，main 分支包含最新文档。v0.1.0 标签保留最初源码快照，早于后续双语文档提交；首次安装可从 main 获取源码。本次发布源码仓库，未创建独立 GitHub Release 附件。
 
 开源许可只适用于本项目自有代码；依赖保持各自许可证。源码包不包含 node_modules，依赖由锁文件安装，Mermaid 构建产物随其许可证复制。
 
