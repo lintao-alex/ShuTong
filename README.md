@@ -23,7 +23,7 @@ Counts mean “shown before,” not mastery, confidence, or permanent understand
 
 You need **Node.js 22.22.2+**, **pnpm 10.33.2**, and Codex with plugin and hook support. The most recent local CLI verification used `0.158.0-alpha.2.1`; this is a tested version, not a claimed minimum.
 
-Download or clone [this repository](https://github.com/lintao-alex/ShuTong), keep it in a stable location, and run **from the repository root**:
+For a fresh checkout, run the commands below. If you already downloaded or cloned [this repository](https://github.com/lintao-alex/ShuTong), skip the first two lines and run the remaining commands **from its root**. Keep the checkout in a stable location:
 
 ```sh
 git clone https://github.com/lintao-alex/ShuTong.git
