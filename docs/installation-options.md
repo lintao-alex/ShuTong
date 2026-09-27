@@ -2,7 +2,7 @@
 
 ## 完整 Codex 插件（当前默认）
 
-先在仓库执行 `pnpm install --frozen-lockfile --ignore-scripts`、`pnpm check`。生成的 `plugins/shutong/` 是插件来源，包含 Skill、MCP 和 UserPromptSubmit/Stop/Interrupt 钩子。按 Codex 的本地插件安装流程注册来源并安装；在来源目录执行 `node scripts/configure-local-plugin.mjs /absolute/plugin/path`，写入本机 Node 和 MCP 路径。
+先在仓库执行 `pnpm install --frozen-lockfile --ignore-scripts`、`pnpm check`。生成的 `plugins/shutong/` 是插件来源，包含 Skill、MCP 和 UserPromptSubmit/Stop/Interrupt 钩子。具体安装命令见 [源码安装](release-0.1.0.md)；在仓库根目录执行 `node scripts/configure-local-plugin.mjs /absolute/plugin/path`，写入本机 Node 和 MCP 路径。
 
 本机开发安装使用个人市场中的 `shutong@personal`，来源为 `~/plugins/shutong/`。开发更新须通过 cachebuster 和 `codex plugin add shutong@personal` 重新安装，不直接改缓存。新任务用于加载新版本；原来的三条钩子若提示未信任，在宿主钩子管理界面审核。
 
@@ -23,3 +23,6 @@
 `schemas/` 保存知识快照、配置补丁、本轮覆盖和回答详情的 JSON Schema；通过 `pnpm schemas` 从运行时契约重新生成。数据库结构版本 2 会迁移原版本 1，知识导出仍为 `shutong-knowledge` 版本 1，新增可选别名字段。升级迁移已有次数和阈值已有回归测试。
 
 许可证已确定为 MIT。仓库包含 shutong-preview 安装目录，下载后先本地构建再安装，详见 [0.1.0 发布说明](release-0.1.0.md)。远程地址和 GitHub 发布仍待维护者提供。第二宿主标为待实现，先完成 Codex 体验验证。
+
+
+升级与卸载见 [中文 README](../README.zh-CN.md) 或 [English user guide](user-guide.md)。独立 Skill 只提供呈现规则，不等于另一宿主已完成自动记录适配。

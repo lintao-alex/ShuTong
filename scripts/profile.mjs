@@ -3,19 +3,19 @@ import { homedir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { SqliteKnowledgeStore } from '../packages/user-information/dist/index.js';
 
-const help = `ShuTong 本地用户信息工具（尚未接入 Codex 对话）
+const help = `ShuTong 本地用户信息维护工具（自动对话记录由插件提供）
 用法：node scripts/profile.mjs [--db FILE] [--user ID] COMMAND [ARGS]
 
   status | list              查看当前用户阈值和知识点
   get ID...                  只查询指定知识点
   record                     从 stdin 读取已完成交付的事件 JSON
-  known ID true|false        标记已掌握；false 清零并重新累计
+  known ID true|false        标记已知；false 清零并重新累计
   threshold N                设置正整数阈值，初始默认 1
   name ID NAME               修正显示名称
   count ID N                 手动修正次数，保留去重凭据
   export                     输出版本化 JSON，含去重凭据
   import [--replace]         从 stdin 恢复；替换已有档案需 --replace
-  clear                      清空此用户的配置、知识点和去重凭据
+  clear                      清空此用户的知识档案和去重凭据，保留功能开关
 
 默认用户为 local；SHUTONG_DATA_DIR 可指定数据目录。
 此命令不会识别回答内容，也不会安装或修改 Codex 钩子。`;

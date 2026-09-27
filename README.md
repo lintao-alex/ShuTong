@@ -1,48 +1,118 @@
-# ShuTong
+# ShuTong (书童)
 
-ShuTong 的首要目标是让 AI 回答读起来不吃力：先看主干，需要时再展开细节。通过可扩展的用户信息与输出能力，尝试减少不必要的重复解释。
+English | [简体中文](README.zh-CN.md)
 
-当前为 **0.1.0 源码预览版**，采用 **[MIT](LICENSE)**。主要在本机 Codex 验证；第二宿主待实现。
+**AI answers that are easier to read: the main answer first, details when you need them.**
 
-## 产品结构
+ShuTong is a local Codex plugin that combines optional answer details with a record of concepts already explained to you. Its goal is less reading effort, with no mandatory per-answer check-in.
 
-- **用户信息模块**：记录和管理用户信息，首项能力为知识点解释次数与用户手动标记。
-- **输出模块**：使用相关用户信息调整输出，包含减少重复基础解释、主干优先和按需详情，支持按内容选择表达媒介。
+**Status:** 0.1.0 source preview · **License:** [MIT](LICENSE) · **Verified host:** Codex on macOS. Other hosts are planned; Windows and Linux paths exist but have not had full end-to-end validation. The panel currently uses Chinese labels, explained below.
 
-两侧支持多对多组合，为后续信息类型和输出能力保留扩展空间。
+## What it does
 
-## 第一条实现路径
+- Presents a concise main answer and named details in a local browser panel. Simple answers stay simple.
+- Counts delivered explanations across chats and projects for the same local OS user and Codex configuration. The default threshold is **1**, and you can change it.
+- Asks the model to skip familiar basics. Explicit requests to explain again take precedence.
+- Lets you optionally mark concepts known, search or edit records, inspect source identifiers, undo changes, export records, and clear data.
+- Separates automatic recording from adaptive output, with global, domain, chat, and per-answer controls.
+- Displays Markdown, tables, code blocks, and bounded Mermaid flowcharts and sequence diagrams.
 
-自动累计知识点解释次数，达到可配置阈值后默认省略基础解释，默认阈值为 1 次。用户也可以主动展开本次知识点列表并标记已知，获得同样的效果。用户再次提问时正常解释，现有机制检查已声明的关键条件，但不保证模型列出了全部知识。需要系统梳理时可要求“完整版、不要折叠”。
+Counts mean “shown before,” not mastery, confidence, or permanent understanding. Hidden detail explanations count only when displayed; merely generating or retrieving them does not count. Reopening the same detail does not add another count for that original answer.
 
-## 当前状态
+## Install from source
 
-已实现本地版本：SQLite 机械计数、去重与手动标记，主干与折叠详情，独立功能开关和分层覆盖，领域/别名检索及有限名称候选，变更审计与撤销，以及 Codex Skill/MCP/生命周期钩子。
+You need **Node.js 22.22.2+**, **pnpm 10.33.2**, and Codex with plugin and hook support. The most recent local CLI verification used `0.158.0-alpha.2.1`; this is a tested version, not a claimed minimum.
 
-详情通过本地独立页面展开，未提供 Codex 原生消息折叠。知识点识别和关键信息判断仍依赖模型；折叠可减少首层阅读量，不代表更少生成 Token。新版在发送前检查短主干，超长最多修订一次，并精简策略上下文；详情仍可即时展开。
-
-- [0.1.0 下载后的构建与安装](docs/release-0.1.0.md)
-- [Token 测量与离线对比](docs/token-measurement.md)
-- [直接试用](docs/try-in-codex.md)
-- [主干与详情行为](docs/progressive-output.md)
-- [设置与覆盖](docs/settings.md)
-- [安装方式、独立 Skill 和开放格式](docs/installation-options.md)
-- [进度与验证边界](docs/status.md)
-
-## 本地验证
-
-需要 Node.js 22.22.2 或以上兼容版本、pnpm 10.33.2。
+Download or clone this repository, keep it in a stable location, and run **from the repository root**:
 
 ```sh
 pnpm install --frozen-lockfile --ignore-scripts
 pnpm check
-pnpm demo
-pnpm demo:profile
-pnpm build:plugin
+node scripts/configure-local-plugin.mjs ./plugins/shutong
+codex plugin marketplace add .
+codex plugin add shutong@shutong-preview
 ```
 
-`demo` 验证组合接口；`demo:profile` 在临时数据库中验证默认阈值 1、重复计数保护及重新打开后的恢复，并自动清理演示数据。演示不调用模型、不记录真实用户信息。
+`pnpm check` compiles the project, builds the plugin, and runs tests. It does not call an LLM or require an API key; integration tests start temporary loopback HTTP servers. Your normal Codex account and usage limits apply when you later use the plugin in a conversation.
 
-模块职责和可选宿主探测见 [开发说明](docs/development.md)，查看与修改本地记录见 [本地用户信息使用说明](docs/local-profile.md)。
+The build generates machine-specific paths. Keep the source directory: the current MCP configuration points to its runtime. If you move it, configure and reinstall again. Review any hook trust prompts in Codex, then **start a new chat**. ShuTong uses `UserPromptSubmit`, `Stop`, and `Interrupt` hooks.
 
-本目录是独立的产品 Git 仓库；GitHub 发布目标尚待维护者提供。源码包不含个人数据、node_modules、生成运行时或本机路径配置。阅读体验交由用户反馈，不承诺节省 Token。
+If you already use `shutong@personal`, keep that development source instead of installing a second copy. The commands above use this repository's `shutong-preview` marketplace. See the [user guide](docs/user-guide.md) for updates, disabling, and removal.
+
+## Try it
+
+In a new Codex chat, ask a multi-part question:
+
+> Design a minimal internal knowledge-base assistant for a 20-person team with 500 Markdown documents and different access permissions. Explain the recommendation, dependencies, risks, and implementation steps. Discuss the design only; do not browse or edit files.
+
+Expect a compact answer with an **展开细节与知识点** (“Expand details and knowledge”) link when useful. The panel has **回答与细节** (answer and details), **知识点** (knowledge), and **设置** (settings) views. You do not need to open it on every turn.
+
+You can also say:
+
+- “Explain this fully; do not fold any part of the answer.”
+- “Explain RAG again from the beginning.”
+- “Disable automatic recording, but keep using my existing records.”
+- “Open the ShuTong panel.”
+
+A whole-answer request bypasses folding for that answer. Asking for one topic's implementation details can still use detail nodes. Neither request resets long-term counts.
+
+## Data and privacy
+
+ShuTong stores its profile and settings locally, without its own cloud sync or telemetry service. Normal hooks do not scan your full conversation history. Selected answer content and identifiers are temporarily retained.
+
+**Local storage does not mean all information stays outside the model:** relevant concept records and instructions are returned to Codex through tools and become part of the host's model context. The host's own data handling still applies.
+
+| Platform | Default data directory |
+| --- | --- |
+| macOS | `~/Library/Application Support/ShuTong/` |
+| Windows | `%LOCALAPPDATA%\ShuTong\` |
+| Linux | `${XDG_DATA_HOME:-~/.local/share}/shutong/` |
+
+`SHUTONG_DATA_DIR` selects an isolated directory. Knowledge and settings persist until changed or removed. Temporary answer details expire after 24 hours; file cleanup happens on a subsequent new turn, not on a background timer. The panel can clear them sooner. Knowledge exports exclude settings, audit history, and temporary details.
+
+The panel binds to `127.0.0.1` and uses an access token in its URL. Treat that URL and exported records as private. See [data controls and backups](docs/user-guide.md#data-controls-and-backups) and [security boundaries](SECURITY.md).
+
+## Current limits
+
+- Details use a separate local page, **not native folding inside a Codex message**.
+- Concept identification, matching, and selection of important conditions depend on the model. Checks preserve declared conditions; they cannot guarantee that every important point was identified. Asking for a complete answer is not a completeness guarantee.
+- Details are generated ahead of time. Less visible text does **not** imply fewer tokens or a smaller bill; tool calls can increase usage. No token-saving claim is made.
+- Diagram support covers flowcharts and sequence diagrams with source fallback. Formulas, other diagram types, and code syntax highlighting are not implemented.
+- Sources show saved host/chat/turn identifiers, not original conversation text or links back to those chats.
+- There is no cross-device sync, learning recommendation system, or full branching chat client.
+
+The latest code validation passed 100 tests. This is evidence of tested behavior, not proof of subjective reading improvement or general savings. The current priority is feedback from actual Codex use.
+
+## Architecture and development
+
+The **user information module** supplies records; the **output module** consumes relevant information to shape responses. The two support multiple information types and output capabilities rather than a single hard-wired summarizer.
+
+| Directory | Purpose |
+| --- | --- |
+| `packages/` | Contracts, information providers, output policies, Codex adapter |
+| `runtime/` | Hooks, MCP server, configuration, local panel |
+| `plugins/shutong/` | Plugin manifest, hooks, Skill, generated runtime |
+| `skills/progressive-collaboration/` | Standalone output policy without automatic tracking |
+| `schemas/` | Versioned JSON formats |
+| `tests/` | Regression tests and fixed evaluation cases |
+
+```sh
+pnpm check
+pnpm demo
+pnpm demo:profile
+node scripts/report-cost.mjs examples/token-comparison.json /tmp/shutong-report.html
+```
+
+These commands do not call a model. The report uses supplied historical measurements; it is not a live savings meter. The separate `evaluate-codex.mjs` and `evaluate-memory.mjs` scripts **do** invoke models and consume usage. Read their instructions before running them.
+
+See [CONTRIBUTING](CONTRIBUTING.md) for the development workflow and useful bug reports.
+
+## Documentation
+
+- [User guide: operation, data, updates, troubleshooting](docs/user-guide.md) — English
+- [Documentation index / 文档索引](docs/README.md)
+- [Detailed behavior](docs/progressive-output.md), [settings](docs/settings.md), [records](docs/local-profile.md) — 简体中文
+- [Developer internals](docs/development.md), [token measurement](docs/token-measurement.md), [0.1.0 release notes](docs/release-0.1.0.md) — 简体中文
+- [Changelog](CHANGELOG.md) · [Security](SECURITY.md) · [MIT license](LICENSE)
+
+Issue and pull-request links will use this repository's GitHub pages once a remote is published. No hosted service or support SLA is provided. Dependencies retain their own licenses.

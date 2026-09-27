@@ -2,6 +2,8 @@
 
 让 AI 回答先呈现容易阅读的主干，细节需要时再展开，并机械记住哪些知识点已经解释过。
 
+[English installation](../README.md) · [中文 README](../README.zh-CN.md) · [文档索引](README.md)
+
 ## 下载后运行
 
 这是源码包，不是预装好的插件缓存。需要 Node.js 22.22.2+、pnpm 10.33.2，以及支持插件的 Codex。下载源码后，在解压目录执行：
@@ -31,3 +33,6 @@ codex plugin add shutong@shutong-preview
 采用 [MIT](../LICENSE)。源码发布材料和本地提交已准备；GitHub 远程仓库、推送与 Release 页面需要维护者提供目标仓库并完成本机登录。此文件不能被解释为已经在 GitHub 上发布。
 
 开源许可只适用于本项目自有代码；依赖保持各自许可证。源码包不包含 node_modules，依赖由锁文件安装，Mermaid 构建产物随其许可证复制。
+
+
+升级、停用、卸载和常见问题见 [中文 README](../README.zh-CN.md) 与 [English user guide](user-guide.md)。贡献入口为 [CONTRIBUTING](../CONTRIBUTING.md)，安全边界与漏洞报告为 [SECURITY](../SECURITY.md)。
